@@ -1,15 +1,16 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { ProduitComponent } from './produit/produit.component';
 import {ProduitMockService} from './produit/produit.mock.service';
-import {Produit} from './shared/produit';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ContentComponent } from './content/content.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
+import{ProduitService} from './produit/produit.service';
+import {HttpClientModule} from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,9 +21,9 @@ import {AppRoutingModule} from './app.routing.module';
     DashboardComponent
   ],
   imports: [
-    BrowserModule,AppRoutingModule
+    BrowserModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
   ],
-  providers: [ProduitMockService],
+  providers: [ProduitMockService,ProduitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
