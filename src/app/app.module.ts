@@ -10,7 +10,20 @@ import { ContentComponent } from './content/content.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {AppRoutingModule} from './app.routing.module';
 import{ProduitService} from './produit/produit.service';
-import {HttpClientModule} from '@angular/common/http';
+import {HttpClientModule,HTTP_INTERCEPTORS} from '@angular/common/http';
+import { LoginComponent } from './login/login.component';
+import { HomeComponent } from './home/home.component';
+import {AppService} from './app.service';
+import { XhrInterceptor } from './xhr.iterceptor';
+import { CookieService } from 'ngx-cookie-service';
+import { UserComponent } from './user/user.component';
+import {StoreModule} from '@ngrx/store';
+import { principalReducer } from './shared/principal.reducer';
+import { UserService } from './user/user.service';
+import { CrudComponent } from './shared/crud/crud.component';
+import {CrudService} from './shared/crud.service';
+import { ChartModule } from 'angular2-chartjs';
+import { MyChartComponent } from './my-chart/my-chart.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,12 +31,24 @@ import {HttpClientModule} from '@angular/common/http';
     NavbarComponent,
     SidebarComponent,
     ContentComponent,
-    DashboardComponent
+    DashboardComponent,
+    LoginComponent,
+    HomeComponent,
+    UserComponent,
+    CrudComponent,
+    MyChartComponent
   ],
   imports: [
-    BrowserModule,AppRoutingModule,ReactiveFormsModule,HttpClientModule
+    BrowserModule,
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    StoreModule.forRoot({principal:principalReducer}),ChartModule 
   ],
-  providers: [ProduitMockService,ProduitService],
+  providers: [ProduitMockService,ProduitService,AppService,
+  {provide:HTTP_INTERCEPTORS,useClass :XhrInterceptor ,multi:true},
+  CookieService,UserService
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
