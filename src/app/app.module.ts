@@ -24,6 +24,8 @@ import { CrudComponent } from './shared/crud/crud.component';
 import {CrudService} from './shared/crud.service';
 import { ChartModule } from 'angular2-chartjs';
 import { MyChartComponent } from './my-chart/my-chart.component';
+import { SampleComponent } from './shared/crud/sample/sample.component';
+import { UploadComponent } from './shared/crud/upload/upload.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +38,9 @@ import { MyChartComponent } from './my-chart/my-chart.component';
     HomeComponent,
     UserComponent,
     CrudComponent,
-    MyChartComponent
+    MyChartComponent,
+    SampleComponent,
+    UploadComponent
   ],
   imports: [
     BrowserModule,
